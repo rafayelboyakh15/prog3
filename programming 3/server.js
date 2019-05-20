@@ -6,9 +6,15 @@ grassArr = [];
 grassEaterArr = [];
 grassEaterEaterArr = [];
 waterArr = [];
-// fireArr = [];
+fireArr = [];
 matrix = [];
 //! Setting global arrays  -- END
+
+// hashiv
+grassHashiv = 0;
+grassEaterHashiv = 0;
+grassEaterEaterHashiv = 0;
+// !hashiv
 
 
 
@@ -47,7 +53,7 @@ function matrixGenerator(matrixSize, grass, grassEater, grassEaterEater, waterAr
         matrix[customY][customX] = 5;
     }
 }
-matrixGenerator(10, 5, 6, 4, 3);
+matrixGenerator(10, 5, 6, 4, 3, 10);
 //! Creating MATRIX -- END
 
 
@@ -57,6 +63,7 @@ var Grass = require("./modules/Grass.js");
 var GrassEater = require("./modules/GrassEater.js");
 var GrassEaterEater = require("./modules/GrassEaterEater.js");
 var Water = require("./modules/Water.js");
+var Fire = require("./modules/Fire.js");
 //! Requiring modules  --  END
 
 
@@ -84,14 +91,19 @@ function creatingObjects() {
             } else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
+                grassHashiv++;
             }
             else if (matrix[y][x] == 3) {
                 var grassEaterEater = new GrassEaterEater(x, y);
                 grassEaterEaterArr.push(grassEaterEater);
             }
-            else if (matrix[y][x] == 3) {
+            else if (matrix[y][x] == 4) {
                 var water = new Water(x, y);
                 waterArr.push(water);
+            }
+            else if (matrix[y][x] == 5) {
+                var fire = new Fire(x, y);
+                fireArr.push(fire);
             }
         }
     }
@@ -121,10 +133,17 @@ function game() {
             waterArr[i].eat();
         }
     }
+    if (fireArr[0] !== undefined) {
+        for (var i in fireArr) {
+            fireArr[i].eat();
+        }
+    }
 
     //! Object to send
     let sendData = {
-        matrix: matrix
+        matrix: matrix,
+        grassCount: grassHashiv,
+
     }
 
     //! Send data over the socket to clients who listens "data"
