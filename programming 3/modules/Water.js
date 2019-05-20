@@ -37,6 +37,7 @@ module.exports = class Water extends LiveForm {
         let newCell = random(emptyCells);
     
         if (newCell) {
+            waterHashiv++;
             let x = newCell[0];
             let y = newCell[1];
             matrix[y][x] = 4;

@@ -29,6 +29,7 @@ module.exports = class GrassEaterEater extends LiveForm {
         let newCell = random(emptyCells);
     
         if (newCell) {
+            grassEaterEaterHashiv++;
             let x = newCell[0];
             let y = newCell[1];
             matrix[y][x] = 3;

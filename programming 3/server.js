@@ -14,6 +14,8 @@ matrix = [];
 grassHashiv = 0;
 grassEaterHashiv = 0;
 grassEaterEaterHashiv = 0;
+waterHashiv = 0;
+fireHashiv = 0;
 // !hashiv
 
 
@@ -88,6 +90,7 @@ function creatingObjects() {
             if (matrix[y][x] == 2) {
                 var grassEater = new GrassEater(x, y);
                 grassEaterArr.push(grassEater);
+                grassEaterHashiv++;
             } else if (matrix[y][x] == 1) {
                 var grass = new Grass(x, y);
                 grassArr.push(grass);
@@ -96,14 +99,17 @@ function creatingObjects() {
             else if (matrix[y][x] == 3) {
                 var grassEaterEater = new GrassEaterEater(x, y);
                 grassEaterEaterArr.push(grassEaterEater);
+                grassEaterEaterHashiv++;
             }
             else if (matrix[y][x] == 4) {
                 var water = new Water(x, y);
                 waterArr.push(water);
+                waterHashiv++;
             }
             else if (matrix[y][x] == 5) {
                 var fire = new Fire(x, y);
                 fireArr.push(fire);
+                fireHashiv++;
             }
         }
     }
@@ -143,7 +149,10 @@ function game() {
     let sendData = {
         matrix: matrix,
         grassCount: grassHashiv,
-
+        grassEaterCount: grassEaterHashiv,
+        grassEaterEaterCount: grassEaterEaterHashiv,
+        waterCount: waterHashiv,
+        fireCount: fireHashiv,
     }
 
     //! Send data over the socket to clients who listens "data"
