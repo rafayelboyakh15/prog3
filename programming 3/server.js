@@ -161,4 +161,14 @@ function game() {
 
 
 
-setInterval(game, 200)
+// setInterval(game, 200)
+function aragutyun() {
+    for (let r = 0; r >=0; r++) {
+        if ((r>=10) && (r<=50)) {return  setInterval(game, 200)}
+        else if((r>=55) && (r<=60)){return  setInterval(game, 300)}
+        else if((r>=60) && (r<=70)){return  setInterval(game, 600)}
+        else{return  setInterval(game, 1000)}
+    }
+    
+}
+setInterval(aragutyun,1000)
